@@ -1679,8 +1679,9 @@ static QualType ConvertDeclSpecToType(TypeProcessingState &state) {
     // C90 6.5.3 constraints: "The same type qualifier shall not appear more
     // than once in the same specifier-list or qualifier-list, either directly
     // or via one or more typedefs."
-    if (!S.getLangOpts().C99 && !S.getLangOpts().CPlusPlus
-        && TypeQuals & Result.getCVRQualifiers()) {
+    if (!S.getLangOpts().C99 && !S.getLangOpts().CPlusPlus &&
+        TypeQuals & Result.getCVRQualifiers() && !S.getLangOpts().GNUMode &&
+        DS.getTypeSpecType() != DeclSpec::TST_typeofExpr) {
       if (TypeQuals & DeclSpec::TQ_const && Result.isConstQualified()) {
         S.Diag(DS.getConstSpecLoc(), diag::ext_duplicate_declspec)
           << "const";
