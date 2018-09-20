@@ -5,13 +5,13 @@
 // typeof in gnu89.
 const int c_i;
 const typeof(c_i) c_i2;
-// CHECK-PEDANTIC: warning: extension used
-// CHECK-PEDANTIC: warning: duplicate 'const' declaration specifier
-// CHECK-ABSTRUSE-NOT: warning: duplicate 'const' declaration specifier
+// CHECK-PEDANTIC: 7:7: warning: extension used
+// CHECK-PEDANTIC: 7:1: warning: duplicate 'const' declaration specifier
+// CHECK-ABSTRUSE-NOT: 7:1: warning: duplicate 'const' declaration specifier
 
 const const int c_i3;
-// CHECK: warning: duplicate 'const' declaration specifier
+// CHECK: 12:7: warning: duplicate 'const' declaration specifier
 
 typedef const int t;
 const t c_i4;
-// CHECK: warning: duplicate 'const' declaration specifier
+// CHECK: 16:1: warning: duplicate 'const' declaration specifier
