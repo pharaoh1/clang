@@ -21,4 +21,3 @@ const const int x;
 typedef const int t;
 const t x2;
 // CHECK: warning: duplicate 'const' declaration specifier
-

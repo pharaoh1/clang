@@ -1684,9 +1684,8 @@ static QualType ConvertDeclSpecToType(TypeProcessingState &state) {
     // -pedantic was not set.
     if (!S.getLangOpts().C99 && !S.getLangOpts().CPlusPlus &&
         TypeQuals & Result.getCVRQualifiers() &&
-        !(S.getLangOpts().GNUMode &&
-        !S.Diags.getDiagnosticOptions().Pedantic &&
-        DS.getTypeSpecType() == DeclSpec::TST_typeofExpr))  {
+        !(S.getLangOpts().GNUMode && !S.Diags.getDiagnosticOptions().Pedantic &&
+          DS.getTypeSpecType() == DeclSpec::TST_typeofExpr)) {
       if (TypeQuals & DeclSpec::TQ_const && Result.isConstQualified()) {
         S.Diag(DS.getConstSpecLoc(), diag::ext_duplicate_declspec)
           << "const";
