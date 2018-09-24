@@ -36,6 +36,7 @@
 #include "llvm/ADT/SmallString.h"
 #include "llvm/ADT/StringSwitch.h"
 #include "llvm/Support/ErrorHandling.h"
+#include <iostream>
 
 using namespace clang;
 
@@ -1680,12 +1681,15 @@ static QualType ConvertDeclSpecToType(TypeProcessingState &state) {
     // than once in the same specifier-list or qualifier-list, either directly
     // or via one or more typedefs."
     //
-    // Not checked for gnu89 if the TST is from a typeof expression and
-    // -pedantic was not set.
+    // C90 and GNU89 do not warn if the TST is from a typedef unless -pedantic
+    // was set. GNU89 additionally does not warn if the TST is from a typeof
+    // expression and -pedantic was not set.
     if (!S.getLangOpts().C99 && !S.getLangOpts().CPlusPlus &&
         TypeQuals & Result.getCVRQualifiers() &&
-        !(S.getLangOpts().GNUMode && !S.Diags.getDiagnosticOptions().Pedantic &&
-          DS.getTypeSpecType() == DeclSpec::TST_typeofExpr)) {
+        (S.Diags.getDiagnosticOptions().Pedantic ||
+         !(DS.getTypeSpecType() == DeclSpec::TST_typename ||
+           (S.getLangOpts().GNUMode &&
+            DS.getTypeSpecType() == DeclSpec::TST_typeofExpr)))) {
       if (TypeQuals & DeclSpec::TQ_const && Result.isConstQualified()) {
         S.Diag(DS.getConstSpecLoc(), diag::ext_duplicate_declspec)
           << "const";
