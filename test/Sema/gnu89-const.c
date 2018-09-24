@@ -20,68 +20,52 @@ RUN: %clang_cc1 %s -std=gnu17 -pedantic -fsyntax-only 2>&1 | FileCheck -check-pr
 
 const const int c_i;
 /*
-CHECK-C89: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-C89-PEDANTIC: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-C99: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-C99-PEDANTIC: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-C11: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-C11-PEDANTIC: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-C17: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-C17-PEDANTIC: 21:7: warning: duplicate 'const' declaration specifier
-
-CHECK-GNU89: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-GNU89-PEDANTIC: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-GNU99: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-GNU99-PEDANTIC: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-GNU11: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-GNU11-PEDANTIC: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-GNU17: 21:7: warning: duplicate 'const' declaration specifier
-CHECK-GNU17-PEDANTIC: 21:7: warning: duplicate 'const' declaration specifier
+CHECK: 21:7: warning: duplicate 'const' declaration specifier
 */
 
 typedef const int t;
 const t c_i2;
 /*
-CHECK-C89-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-C89-PEDANTIC: 43:1: warning: duplicate 'const' declaration specifier
+CHECK-C89-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-C89-PEDANTIC: 27:1: warning: duplicate 'const' declaration specifier
           ^ NOTE: special case
-CHECK-C99-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-C99-PEDANTIC-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-C11-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-C11-PEDANTIC-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-C17-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-C17-PEDANTIC-NOT: 43:1: warning: duplicate 'const' declaration specifier
+CHECK-C99-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-C99-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-C11-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-C11-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-C17-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-C17-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
 
-CHECK-GNU89-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU89-PEDANTIC: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU99-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU99-PEDANTIC-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU11-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU11-PEDANTIC-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU17-NOT: 43:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU17-PEDANTIC-NOT: 43:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU89-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-CNU89-PEDANTIC: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-CNU99-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-CNU99-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-CNU11-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-CNU11-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-CNU17-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-CNU17-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
 */
 
 const int c_i3;
 const typeof(c_i) c_i4;
 /*
-CHECK-C89: 66:19: error: expected function body after function declarator
-CHECK-C89-PEDANTIC: 66:19: error: expected function body after function declarator
-CHECK-C99: 66:19: error: expected function body after function declarator
-CHECK-C99-PEDANTIC: 66:19: error: expected function body after function declarator
-CHECK-C11: 66:19: error: expected function body after function declarator
-CHECK-C11-PEDANTIC: 66:19: error: expected function body after function declarator
-CHECK-C17: 66:19: error: expected function body after function declarator
-CHECK-C17-PEDANTIC: 66:19: error: expected function body after function declarator
+CHECK-C89: 50:19: error: expected function body after function declarator
+CHECK-C89-PEDANTIC: 50:19: error: expected function body after function declarator
+CHECK-C99: 50:19: error: expected function body after function declarator
+CHECK-C99-PEDANTIC: 50:19: error: expected function body after function declarator
+CHECK-C11: 50:19: error: expected function body after function declarator
+CHECK-C11-PEDANTIC: 50:19: error: expected function body after function declarator
+CHECK-C17: 50:19: error: expected function body after function declarator
+CHECK-C17-PEDANTIC: 50:19: error: expected function body after function declarator
 
-CHECK-GNU89-NOT: 66:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU89-NOT: 50:1: warning: duplicate 'const' declaration specifier
             ^ NOTE: special case
-CHECK-GNU89-PEDANTIC: 66:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU89-PEDANTIC: 50:1: warning: duplicate 'const' declaration specifier
             ^ NOTE: special case
-CHECK-GNU99-NOT: 66:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU99-PEDANTIC-NOT: 66:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU11-NOT: 66:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU11-PEDANTIC-NOT: 66:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU17-NOT: 66:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU17-PEDANTIC-NOT: 66:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU99-NOT: 50:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU99-PEDANTIC-NOT: 50:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU11-NOT: 50:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU11-PEDANTIC-NOT: 50:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU17-NOT: 50:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU17-PEDANTIC-NOT: 50:1: warning: duplicate 'const' declaration specifier
 */
