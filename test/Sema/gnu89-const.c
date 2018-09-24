@@ -37,35 +37,35 @@ CHECK-C17-NOT: 27:1: warning: duplicate 'const' declaration specifier
 CHECK-C17-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
 
 CHECK-GNU89-NOT: 27:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU89-PEDANTIC: 27:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU99-NOT: 27:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU99-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU11-NOT: 27:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU11-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU17-NOT: 27:1: warning: duplicate 'const' declaration specifier
-CHECK-CNU17-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU89-PEDANTIC: 27:1: warning: duplicate 'const' declaration specifier
+            ^ NOTE: special case
+CHECK-GNU99-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU99-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU11-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU11-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU17-NOT: 27:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU17-PEDANTIC-NOT: 27:1: warning: duplicate 'const' declaration specifier
 */
 
 const int c_i3;
 const typeof(c_i) c_i4;
 /*
-CHECK-C89: 50:19: error: expected function body after function declarator
-CHECK-C89-PEDANTIC: 50:19: error: expected function body after function declarator
-CHECK-C99: 50:19: error: expected function body after function declarator
-CHECK-C99-PEDANTIC: 50:19: error: expected function body after function declarator
-CHECK-C11: 50:19: error: expected function body after function declarator
-CHECK-C11-PEDANTIC: 50:19: error: expected function body after function declarator
-CHECK-C17: 50:19: error: expected function body after function declarator
-CHECK-C17-PEDANTIC: 50:19: error: expected function body after function declarator
+CHECK-C89: 51:19: error: expected function body after function declarator
+CHECK-C89-PEDANTIC: 51:19: error: expected function body after function declarator
+CHECK-C99: 51:19: error: expected function body after function declarator
+CHECK-C99-PEDANTIC: 51:19: error: expected function body after function declarator
+CHECK-C11: 51:19: error: expected function body after function declarator
+CHECK-C11-PEDANTIC: 51:19: error: expected function body after function declarator
+CHECK-C17: 51:19: error: expected function body after function declarator
+CHECK-C17-PEDANTIC: 51:19: error: expected function body after function declarator
 
-CHECK-GNU89-NOT: 50:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU89-NOT: 51:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU89-PEDANTIC: 51:1: warning: duplicate 'const' declaration specifier
             ^ NOTE: special case
-CHECK-GNU89-PEDANTIC: 50:1: warning: duplicate 'const' declaration specifier
-            ^ NOTE: special case
-CHECK-GNU99-NOT: 50:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU99-PEDANTIC-NOT: 50:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU11-NOT: 50:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU11-PEDANTIC-NOT: 50:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU17-NOT: 50:1: warning: duplicate 'const' declaration specifier
-CHECK-GNU17-PEDANTIC-NOT: 50:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU99-NOT: 51:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU99-PEDANTIC-NOT: 51:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU11-NOT: 51:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU11-PEDANTIC-NOT: 51:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU17-NOT: 51:1: warning: duplicate 'const' declaration specifier
+CHECK-GNU17-PEDANTIC-NOT: 51:1: warning: duplicate 'const' declaration specifier
 */
