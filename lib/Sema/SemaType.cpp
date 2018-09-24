@@ -1682,7 +1682,7 @@ static QualType ConvertDeclSpecToType(TypeProcessingState &state) {
     //
     // C90 and GNU89 do not warn if the TST is from a typedef unless -pedantic
     // was set. GNU89 additionally does not warn if the TST is from a typeof
-    // expression and -pedantic was not set.
+    // expression unless -pedantic was set.
     if (!S.getLangOpts().C99 && !S.getLangOpts().CPlusPlus &&
         TypeQuals & Result.getCVRQualifiers() &&
         (S.Diags.getDiagnosticOptions().Pedantic ||
