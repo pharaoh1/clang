@@ -1851,7 +1851,13 @@ static void handleAliasAttr(Sema &S, Decl *D, const ParsedAttr &AL) {
     }
   }
 
-  // FIXME: check if target symbol exists in current file
+  // Check if target symbol exists in current file, then mark it unreferenced
+  // to prevent unneeded-internal-declaration warnings.
+  DeclContext::lookup_result rs = S.getCurLexicalContext()->noload_lookup(
+      DeclarationName(&S.Context.Idents.get(Str)));
+  for (NamedDecl *r : rs)
+    if (auto *VD = cast<VarDecl>(r))
+      VD->setReferenced(false);
 
   D->addAttr(::new (S.Context) AliasAttr(AL.getRange(), S.Context, Str,
                                          AL.getAttributeSpellingListIndex()));
